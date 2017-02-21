@@ -1,0 +1,15 @@
+<div class="container">
+  <img src="<%= singlePhoto.url %>" width="1024" height="800" alt="image not available">
+  <br>
+  <strong><%= singlePhoto.title %></strong>
+  <br>
+  <%= singlePhoto.description %>
+  <br>
+  <br>
+
+  <a class="btn btn-success" href=<%= "/photos/" + singlePhoto._id + "/edit"%>>Edit</a>
+
+  <form class="deleteForm" method="POST" action=<%= "/photos/" + singlePhoto._id + "?_method=DELETE" %>>
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+</div>
