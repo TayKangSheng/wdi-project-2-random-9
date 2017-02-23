@@ -1,0 +1,6 @@
+<div class="container">
+  <a class="btn btn-success" href=<%= "/zines/" + singleZine._id + "/edit"%>>Edit</a>
+  <form class="deleteForm" method="POST" action=<%= "/zines/" + singleZine._id + "?_method=DELETE" %>>
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+</div>

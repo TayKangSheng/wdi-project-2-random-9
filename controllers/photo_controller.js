@@ -1,7 +1,5 @@
 let Photo = require('../models/photo')
-
-const multer = require('multer')
-const upload = multer({ dest: './uploads/'})
+const cloudinary = require('cloudinary')
 
 const photoController = {
   list: function (req, res) {
@@ -34,19 +32,20 @@ const photoController = {
   },
 
   create: function (req, res) {
-    let newPhoto = new Photo({
-      title: req.body.title,
-      description: req.body.description,
-      url: req.body.url
-    })
-    newPhoto.save(function (err, savedPhoto) {
-      if (err) {
-        console.error(err)
-        return
-      } else {
-        console.log(savedPhoto)
-        res.redirect('/photos')
-      }
+    cloudinary.uploader.upload(req.file.path, function (result) {
+      let newPhoto = new Photo({
+        title: req.body.title,
+        description: req.body.description,
+        url: result.url
+      })
+      newPhoto.save(function (err, savedPhoto) {
+        if (err) {
+          console.error(err)
+          return
+        } else {
+          res.redirect('/photos')
+        }
+      })
     })
   },
 
@@ -64,20 +63,39 @@ const photoController = {
   },
 
   update: function (req, res) {
-    Photo.findOneAndUpdate({
-      _id: req.params.id
-    }, {
-      title: req.body.title,
-      description: req.body.description,
-      url: req.body.url
-    }, function (err, photo) {
-      if (err) {
-        console.error(err)
-        return
-      } else {
-        res.redirect('/photos/' + photo.id)
-      }
-    })
+    if (req.file) {
+      cloudinary.uploader.upload(req.file.path, function (result) {
+        Photo.findOneAndUpdate({
+          _id: req.params.id
+        }, {
+          title: req.body.title,
+          description: req.body.description,
+          url: result.url
+        }, function (err, photo) {
+          if (err) {
+            console.error(err)
+            return
+          } else {
+            res.redirect('/photos/' + photo.id)
+          }
+        }
+      )
+      })
+    } else {
+      Photo.findOneAndUpdate({
+        _id: req.params.id
+      }, {
+        title: req.body.title,
+        description: req.body.description
+      }, function (err, photo) {
+        if (err) {
+          console.error(err)
+          return
+        } else {
+          res.redirect('/photos/' + photo.id)
+        }
+      })
+    }
   },
 
   delete: function (req, res) {

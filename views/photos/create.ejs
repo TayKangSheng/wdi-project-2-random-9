@@ -1,5 +1,5 @@
 <div class="container">
-  <form enctype="multipart/multipart/form-data" action="/photos" method="POST">
+  <form enctype="multipart/form-data" action="/photos" method="POST">
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" class="form-control" id="titleInput" placeholder="Title" name="title">
@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
       <label for="photo">Photo upload</label>
-      <input type="text" class="form-control" id="photoInput" placeholder="Enter img src URL here" name="url">
+      <input type="file" class="form-control" id="photoInput" placeholder="Enter img src URL here" name="url">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
