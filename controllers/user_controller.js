@@ -3,7 +3,9 @@ const passport = require('passport')
 
 const userController = {
   loginPage: function (req, res) {
-    res.render('users/login')
+    res.render('users/login', {
+      flash: req.flash('flash')[0]
+    })
   },
 
   signupPage: function (req, res) {
@@ -24,7 +26,7 @@ const userController = {
   login: function (req, res) {
     var loginStrategy = passport.authenticate('local-login', {
       successRedirect: '/',
-      failureRedirect: '/login',
+      failureRedirect: '/users/login',
       failureFlash: true
     })
     return loginStrategy(req, res)
