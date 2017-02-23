@@ -8,10 +8,14 @@
   <br>
   <% if(isCreator) {%>
     <a class="btn btn-success" href=<%= "/photos/" + singlePhoto._id + "/edit"%>>Edit</a>
-  <form class="deleteForm" method="POST" action=<%= "/photos/" + singlePhoto._id + "?_method=DELETE" %>>
-    <button type="submit" class="btn btn-danger">Delete</button>
-  </form>
-  <% } else {%>
-    <a class="btn btn-success" href="#">Add to my zine</a>
+    <form class="deleteForm" method="POST" action=<%= "/photos/" + singlePhoto._id + "?_method=DELETE" %>>
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
   <% } %>
+  <% if(zine.length !== 0) { %>
+    <a class="btn btn-default" href=<%= "/photos/" + singlePhoto._id + "/add"%>>Add to existing zine(s)</a>
+  <% } %>
+    <a class="btn btn-default" href=<%= "/photos/" + singlePhoto._id + "/new"%>>Add to a new zine</a>
+
+
 </div>

@@ -1,4 +1,6 @@
 let Photo = require('../models/photo')
+let Zine = require('../models/zine')
+
 const cloudinary = require('cloudinary')
 
 const photoController = {
@@ -27,10 +29,17 @@ const photoController = {
         console.log(err)
         return
       }
-      // console.log(photo);
-      res.render('photos/single_photo', {
-        isCreator: (photo.user === req.user.local.email),
-        singlePhoto: photo
+      Zine.find({user: req.user.local.email}, function (err, zine) {
+        if (err) {
+          console.error(err)
+          return
+        } else {
+          res.render('photos/single_photo', {
+            isCreator: (photo.user === req.user.local.email),
+            singlePhoto: photo,
+            zine: zine
+          })
+        }
       })
     })
   },
@@ -112,7 +121,25 @@ const photoController = {
         res.redirect('/photos')
       }
     })
+  },
+
+  addToExistingZine: function (req, res) {
+    Zine.find({user: req.user.local.email}, function (err, zine) {
+      if (err) {
+        console.error(err)
+        return
+      } else {
+        res.render('photos/show', {
+          zine: zine
+        })
+      }
+    })
+  },
+
+  addToNewZine: function (req, res) {
+    res.render('zines/create')
   }
+
 }
 
 module.exports = photoController
