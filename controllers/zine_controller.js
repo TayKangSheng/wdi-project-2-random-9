@@ -8,6 +8,7 @@ const zineController = {
         return
       } else {
         res.render('zines/index', {
+          loggedInUser: req.user.local.email,
           allZines: output
         })
       }
@@ -47,7 +48,8 @@ const zineController = {
   create: function (req, res) {
     let newZine = new Zine({
       name: req.body.title,
-      description: req.body.description
+      description: req.body.description,
+      user: req.user.local.email
     })
     newZine.save(function (err, savedZine) {
       if (err) {

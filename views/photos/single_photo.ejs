@@ -6,10 +6,12 @@
   <%= singlePhoto.description %>
   <br>
   <br>
-
-  <a class="btn btn-success" href=<%= "/photos/" + singlePhoto._id + "/edit"%>>Edit</a>
-
+  <% if(isCreator) {%>
+    <a class="btn btn-success" href=<%= "/photos/" + singlePhoto._id + "/edit"%>>Edit</a>
   <form class="deleteForm" method="POST" action=<%= "/photos/" + singlePhoto._id + "?_method=DELETE" %>>
     <button type="submit" class="btn btn-danger">Delete</button>
   </form>
+  <% } else {%>
+    <a class="btn btn-success" href="#">Add to my zine</a>
+  <% } %>
 </div>

@@ -20,12 +20,16 @@ const photoController = {
   },
 
   listOne: function (req, res) {
+    console.log(req.user)
+    // var userEmail = req.user.local.email
     Photo.findById(req.params.id, function (err, photo) {
       if (err) {
         console.log(err)
         return
       }
+      // console.log(photo);
       res.render('photos/single_photo', {
+        isCreator: (photo.user === req.user.local.email),
         singlePhoto: photo
       })
     })
@@ -36,7 +40,8 @@ const photoController = {
       let newPhoto = new Photo({
         title: req.body.title,
         description: req.body.description,
-        url: result.url
+        url: result.url,
+        user: req.user.local.email
       })
       newPhoto.save(function (err, savedPhoto) {
         if (err) {

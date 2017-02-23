@@ -1,13 +1,17 @@
 const mongoose = require('mongoose')
-
-var Photo = mongoose.model('Photo')
+// const Photo = require('./photo')
+// var Photo = mongoose.model('Photo')
 
 let zineSchema = new mongoose.Schema({
   name: String,
   description: String,
-  url: [Photo.schema]
+  photo: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Photo' }],
+  user: String
 })
+
+// console.log(Photo.schema.obj.url)
 
 let Zine = mongoose.model('Zine', zineSchema)
 
+// console.log(Zine);
 module.exports = Zine

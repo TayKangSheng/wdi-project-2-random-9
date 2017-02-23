@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true})) // get information from HTML f
 app.use(cookieParser()) // read cookies (needed for auth)
 app.use(session({
   secret: process.env.SESSION_SECRET,
+  cookie: { maxAge: 3600000},
   saveUninitialized: true,
   resave: false,
   store: new MongoStore({
@@ -48,6 +49,12 @@ app.use(logger('dev')) // log every request to the console
 // EJS
 app.use(ejsLayouts)
 app.set('view engine', 'ejs')
+
+app.use(function (req, res, next) {
+  res.locals.user = req.user // req.user created by passport after deserializeUser
+  res.locals.isAuthenticated = req.isAuthenticated()
+  next()
+})
 
 // routes
 app.use('/photos', require('./routes/photo_router'))

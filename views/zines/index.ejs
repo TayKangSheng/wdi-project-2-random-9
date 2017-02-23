@@ -1,21 +1,33 @@
 <div class="container">
-<% if(allZines.length === 0) {%>
-  <h1>You do not have any zines at the moment, would you like to start your first zine?</h1>
-  <br/>
 
-    <a class="btn btn-success" href=<%= "/zines/new" %>>Yes!</a>
-    <a class="btn btn-warning" href=<%= "/photos" %>>Maybe later</a>
+  <% var userArr = [] %>
+  <% var count = 0 %>
+  <% allZines.forEach(function(zine) { %>
+    <% userArr.push(zine.user) %>
+  <% }) %>
 
-<% } else { %>
-  <ul>
+  <% userArr.forEach(function(user) { %>
+    <% if(user === loggedInUser) { %>
+      <% count++ %>
+    <% } %>
+  <% }) %>
+
+  <% if(allZines.length === 0 || count === 0) { %>
+    <h1>You do not have any zines at the moment, would you like to start your first zine?</h1>
+    <br/>
+
+      <a class="btn btn-success" href=<%= "/zines/new" %>>Yes!</a>
+      <a class="btn btn-warning" href=<%= "/photos" %>>Maybe later</a>
+
+  <% } else { %>
     <% allZines.forEach(function(zine) { %>
-      <li>
+      <% if(zine.user === loggedInUser) { %>
+
         <h3><%= zine.name %></h3>
         <a class="pull-right" href=<%= "/zines/" + zine._id %>>View</a>
-      </li>
+      <% } %>
     <% }) %>
-  </ul>
-  <br>
     <a class="btn btn-success" href=<%= "/zines/new" %>>Create a new zine</a>
   <% } %>
+
 </div>
