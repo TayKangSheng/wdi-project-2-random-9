@@ -22,7 +22,7 @@ const photoController = {
   },
 
   listOne: function (req, res) {
-    console.log(req.user)
+    // console.log(req.user)
     // var userEmail = req.user.local.email
     Photo.findById(req.params.id, function (err, photo) {
       if (err) {
@@ -124,20 +124,44 @@ const photoController = {
   },
 
   addToExistingZine: function (req, res) {
-    Zine.find({user: req.user.local.email}, function (err, zine) {
-      if (err) {
-        console.error(err)
-        return
-      } else {
-        res.render('photos/show', {
-          zine: zine
+    // console.log(req.params.id);
+    // Photo.findById(req.params.id, function (err, photo) {
+      // if (err) {
+      //   console.error(err)
+      //   return
+      // } else {
+        Zine.find({user: req.user.local.email}, function (err, zine) {
+          if (err) {
+            console.error(err)
+            return
+          } else {
+            res.render('photos/show', {
+              zine: zine,
+              photo: req.params.id
+            })
+          }
         })
-      }
-    })
+      // }
+    // })
   },
 
   addToNewZine: function (req, res) {
     res.render('zines/create')
+  },
+
+  updateZine: function (req, res) {
+    console.log(req.user.local.email)
+    // console.log(req.params.id)
+    console.log(req.query)
+    Zine.findOneAndUpdate({user: req.user.local.email},
+      { $push: { photo: req.params.id }}, function (err, output) {
+        if (err) {
+          console.error(err)
+          return
+        } else {
+          res.redirect('/zines/' + output.id)
+        }
+      })
   }
 
 }

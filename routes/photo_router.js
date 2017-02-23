@@ -14,5 +14,6 @@ router.put('/:id', upload.single('url'), photoController.update)
 router.delete('/:id', photoController.delete)
 router.get('/:id/add', photoController.addToExistingZine)
 router.get('/:id/new', photoController.addToNewZine)
+router.put('/:id', photoController.updateZine)
 
 module.exports = router
