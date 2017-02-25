@@ -50,22 +50,23 @@ app.use(logger('dev')) // log every request to the console
 app.use(ejsLayouts)
 app.set('view engine', 'ejs')
 
+
 app.use(function (req, res, next) {
   res.locals.user = req.user // req.user created by passport after deserializeUser
   res.locals.isAuthenticated = req.isAuthenticated()
   next()
 })
 
+app.get('/', function (req, res) {
+  res.render('homepage')
+})
 // routes
 app.use('/photos', require('./routes/photo_router'))
 app.use('/users', require('./routes/user_router'))
 app.use('/zines', require('./routes/zine_router'))
 
-app.get('/', function (req, res) {
-  res.render('homepage')
-})
 
 var port = process.env.PORT || 3000
 app.listen(port, function () {
-  console.log('Greatness is happening on port ' + port)
+  console.log('Magic is happening on port ' + port)
 })

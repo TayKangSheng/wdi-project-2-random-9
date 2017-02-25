@@ -1,13 +1,13 @@
 <div class="container">
   <h1>Let's create a new zine!</h1>
-  <form action="/zines" method="POST">
+  <form action=<%="/photos/" + photo + "/newzine"%> method="POST">
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" class="form-control" id="titleInput" placeholder="Name of your zine" name="title" required>
+      <input type="text" class="form-control" id="titleInput" placeholder="Name of your zine" name="title">
     </div>
     <div class="form-group">
       <label for="description">Description</label>
-      <textarea type="text" class="form-control" id="descriptionInput" placeholder="Description (optional)" name="description"></textarea>
+      <textarea type="text" class="form-control" id="descriptionInput" placeholder="Description" name="description"></textarea>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>

@@ -1,0 +1,15 @@
+<div class="container">
+  <h1 class="page-header">Edit zine</h1>
+  <form method="POST" action=<%="/zines/" + singleZine._id + "?_method=PUT"%>>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="titleInput" placeholder="Title" value="<%= singleZine.title %>" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea type="text" class="form-control" id="descriptionInput" placeholder="Description (optional)" name="description"><%= singleZine.description %></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </form>
+</div>

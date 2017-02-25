@@ -1,30 +1,19 @@
-<% if(!isAuthenticated) { %>
-  <h1>Please login</h1>
-  <% if(flash && flash.message) { %>
-    <div class="alert alert-<%=flash.type%>" role="alert">
-    <% if( Array.isArray(flash.message) ) { %>
-      <ul>
-      <% flash.message.forEach(function(msg) {%>
-        <li><%= msg %></li>
-        <% }) %>
-        </ul>
-        <% } else { %>
-          <%= flash.message %>
-          <% } %>
-          </div>
-          <% } %>
+<% if(!isAuthenticated) {%>
+<h1>Please login</h1>
+<% include ../partials/flash %>
+<form class="" action="/users/login" method="post">
+<div class="form-group">
+<label for="email">Email</label>
+<input class="form-control" type="email" name="email" id="email" placeholder="email">
+</div>
+<div class="form-group">
+<label for="password">Password</label>
+<input class="form-control" type="password" name="password" id="password" placeholder="password">
+</div>
+<button type="submit" class="btn btn-default" name="button">Submit</button>
+</form>
+<% } else {%>
 
-          <form class="" action="/users/login" method="post">
-          <div class="form-group">
-          <label for="email">Email</label>
-          <input class="form-control" type="email" name="email" id="email" placeholder="email">
-          </div>
-          <div class="form-group">
-          <label for="password">Password</label>
-          <input class="form-control" type="password" name="password" id="password" placeholder="password">
-          </div>
-          <button type="submit" class="btn btn-default" name="button">Submit</button>
-          </form>
-<% } else { %>
-  <h1>You are already logged in</h1>
-<% } %>
+<h1>You are already logged in</h1>
+
+<%}%>

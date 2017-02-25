@@ -2,17 +2,21 @@ let Zine = require('../models/zine')
 
 const zineController = {
   list: function (req, res) {
-    Zine.find({}, function (err, output) {
-      if (err) {
-        console.error(err)
-        return
-      } else {
-        res.render('zines/index', {
-          loggedInUser: req.user.local.email,
-          allZines: output
-        })
-      }
-    })
+    if (req.user !== undefined) {
+      Zine.find({}, function (err, output) {
+        if (err) {
+          console.error(err)
+          return
+        } else {
+          res.render('zines/index', {
+            loggedInUser: req.user.local.email,
+            allZines: output
+          })
+        }
+      })
+    } else {
+      res.redirect('/users/login')
+    }
   },
 
   new: function (req, res) {
@@ -20,19 +24,33 @@ const zineController = {
   },
 
   listOne: function (req, res) {
-    Zine.findById(req.params.id, function (err, singleZine) {
-      if (err) {
-        console.error(err)
-        return
-      } else {
-        res.render('zines/single_zine', {
-          singleZine: singleZine
-        })
-      }
-    })
+    Zine.findById(req.params.id)
+      .populate('photo')
+      .exec(function (err, singleZine) {
+        // console.log(singleZine)
+        if (err) {
+          console.error(err)
+          return
+        } else {
+          res.render('zines/single_zine', {
+            singleZine: singleZine
+          })
+        }
+      })
+    // Zine.findById(req.params.id, function (err, singleZine) {
+    //   if (err) {
+    //     console.error(err)
+    //     return
+    //   } else {
+    //     res.render('zines/single_zine', {
+    //       singleZine: singleZine
+    //     })
+    //   }
+    // })
   },
 
   edit: function (req, res) {
+    // req.body is empty object here as form is not filled in yet
     Zine.findById(req.params.id, function (err, singleZine) {
       if (err) {
         console.error(err)
@@ -62,6 +80,9 @@ const zineController = {
   },
 
   update: function (req, res) {
+    // req.body.title here is the title user filled in
+    // if req.body.title is found in the user's zines, prompt him to rename
+
     Zine.findOneAndUpdate({
       _id: req.params.id
     }, {

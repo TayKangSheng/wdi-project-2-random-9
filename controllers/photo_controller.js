@@ -1,5 +1,6 @@
 let Photo = require('../models/photo')
 let Zine = require('../models/zine')
+const mongoose = require('mongoose')
 
 const cloudinary = require('cloudinary')
 
@@ -77,6 +78,7 @@ const photoController = {
   },
 
   update: function (req, res) {
+    // console.log('hello');
     if (req.file) {
       cloudinary.uploader.upload(req.file.path, function (result) {
         Photo.findOneAndUpdate({
@@ -124,44 +126,71 @@ const photoController = {
   },
 
   addToExistingZine: function (req, res) {
-    // console.log(req.params.id);
-    // Photo.findById(req.params.id, function (err, photo) {
-      // if (err) {
-      //   console.error(err)
-      //   return
-      // } else {
-        Zine.find({user: req.user.local.email}, function (err, zine) {
+    // console.log(req.body);
+    Zine.find({user: req.user.local.email}, function (err, zine) {
+      // console.log(zine);
+      if (err) {
+        console.error(err)
+        return
+      } else {
+        res.render('photos/show', {
+          zine: zine,
+          photo: req.params.id
+        })
+      }
+    })
+  },
+
+  addToNewZine: function (req, res) {
+    res.render('photos/create_zine', {
+      photo: req.params.id
+    })
+  },
+
+  updateZine: function (req, res) {
+    // console.log(req.body.name)
+    req.body.name.forEach(function (zineName) {
+      Zine.findOneAndUpdate({name: zineName},
+        { $push: { photo: req.params.id }}, function (err, output) {
           if (err) {
             console.error(err)
             return
           } else {
-            res.render('photos/show', {
-              zine: zine,
-              photo: req.params.id
-            })
+            console.log('pushed id into zine')
           }
         })
-      // }
-    // })
+    })
+    res.redirect('/photos')
+    // Zine.findOneAndUpdate({name: req.body.name},
+    //   { $push: { photo: req.params.id }}, function (err, output) {
+    //     if (err) {
+    //       console.error(err)
+    //       return
+    //     } else {
+    //       res.redirect('/photos')
+    //     }
+    //   })
   },
 
-  addToNewZine: function (req, res) {
-    res.render('zines/create')
-  },
-
-  updateZine: function (req, res) {
-    console.log(req.user.local.email)
-    // console.log(req.params.id)
-    console.log(req.query)
-    Zine.findOneAndUpdate({user: req.user.local.email},
-      { $push: { photo: req.params.id }}, function (err, output) {
-        if (err) {
-          console.error(err)
-          return
-        } else {
-          res.redirect('/zines/' + output.id)
-        }
-      })
+  newZine: function (req, res) {
+    let newZine = new Zine({
+      name: req.body.title,
+      description: req.body.description,
+      user: req.user.local.email
+    })
+    // console.log(req.params.id);
+    // console.log(mongoose.Types.ObjectId(req.params.id));
+    newZine.photo.push(
+      mongoose.Types.ObjectId(req.params.id)
+    )
+    newZine.save(function (err, zine) {
+      if (err) {
+        console.error(err)
+        return
+      } else {
+        res.redirect('/zines/' + zine.id)
+      }
+    })
   }
 
 }

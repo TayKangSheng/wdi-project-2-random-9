@@ -20,6 +20,8 @@
       <a class="btn btn-warning" href=<%= "/photos" %>>Maybe later</a>
 
   <% } else { %>
+    <h1>My zines</h1>
+    <div class="row">
     <% allZines.forEach(function(zine) { %>
       <% if(zine.user === loggedInUser) { %>
 
@@ -27,6 +29,8 @@
         <a class="pull-right" href=<%= "/zines/" + zine._id %>>View</a>
       <% } %>
     <% }) %>
+    </div>
+    <br>
     <a class="btn btn-success" href=<%= "/zines/new" %>>Create a new zine</a>
   <% } %>
 

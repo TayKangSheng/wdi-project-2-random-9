@@ -1,12 +1,26 @@
 <div class="container">
   <h1>Which zine(s) would you like to add this photo to?</h1>
   <br>
-  <form method="POST" action=<%= "/photos/" + photo + "?_method=PUT"%>>
-    <% zine.forEach(function(zine) { %>
-      <div class="checkbox">
-      <label><input type="checkbox" value=<%=zine.name%> name=<%=zine.name%>><%= zine.name %></label>
-      </div>
-      <% }) %>
+  <form method="POST" action=<%= "/photos/" + photo + "/addtozine?_method=PUT"%>>
+    <%zine.forEach(function(zine) {%>
+      <%var count = 0%>
+      <%zine.photo.forEach(function(photoId) {%>
+        <%if(photoId === photo)%>
+        <%count++%>
+      <%})%>
+      <%if(count === 0) {%>
+        <div class="checkbox">
+          <label><input type="checkbox" value=<%=zine.name%> name="name"><%= zine.name %></label>
+        </div>
+      <%}%>
+    <%})%>
+
+    <!--<% zine.forEach(function(zine) { %>-->
+
+      <!--<div class="checkbox">-->
+      <!--<label><input type="checkbox" value=<%=zine.name%> name="name"><%= zine.name %></label>-->
+      <!--</div>-->
+    <!--<% }) %>-->
       <br>
       <button type="submit" class="btn btn-default">Submit</button>
   </form>

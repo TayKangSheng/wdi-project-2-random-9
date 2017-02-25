@@ -1,6 +1,20 @@
 <div class="container">
+  <h1><%=singleZine.name%></h1>
   <a class="btn btn-success" href=<%= "/zines/" + singleZine._id + "/edit"%>>Edit</a>
   <form class="deleteForm" method="POST" action=<%= "/zines/" + singleZine._id + "?_method=DELETE" %>>
     <button type="submit" class="btn btn-danger">Delete</button>
   </form>
+  <!--<h1><%=singleZine%></h1>-->
+  <div class="row">
+  <div class="col-md-4">.col-md-4</div>
+    <div class="container">
+      <%for(var i = 0; i < 3; i++) {%>
+          hello
+          <%}%>
+    </div>
+</div>
+  <%singleZine.photo.forEach(function(photo) {%>
+    <img src="<%=photo.url%>" alt="picture not available" width="400px" height="auto">
+  <%})%>
+  <br>
 </div>

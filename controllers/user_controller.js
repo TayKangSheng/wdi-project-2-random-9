@@ -18,7 +18,7 @@ const userController = {
     var signUpStrategy = passport.authenticate('local-signup', {
       successRedirect: '/',
       failureRedirect: '/users/signup',
-      failureFlash: true
+      failureFlash: true // true in order for req.flash to display
     })
     return signUpStrategy(req, res)
   },
@@ -35,6 +35,12 @@ const userController = {
   logout: function (req, res) {
     req.logout()
     res.redirect('/')
+  },
+
+  profile: function (req, res) {
+    res.render('users/profile', {
+      user: req.user
+    })
   }
 }
 

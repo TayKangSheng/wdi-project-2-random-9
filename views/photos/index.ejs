@@ -1,7 +1,10 @@
+<div class="container" style="margin:0 auto">
+
 <% photos.forEach(function(photo) { %>
-  <a href=<%= "/photos/" + photo._id %>><img src="<%= photo.url %>" width="500" height="392" alt="image not available"></a>
+  <a href=<%= "/photos/" + photo._id %>><img src="<%= photo.url %>" width="300" height="auto" alt="image not available"></a>
   <!--<br>
   <<strong><%= photo.title %></strong>
   <<br>
   <%= photo.description %>-->
-<%})%>
+  <%})%>
+</div>

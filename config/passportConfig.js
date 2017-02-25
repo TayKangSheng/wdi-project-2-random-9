@@ -73,7 +73,10 @@ module.exports = function (passport) {
         }))
       }
       // return successful user
-      return done(null, user)
+      return done(null, user, req.flash('flash', {
+        type: 'success',
+        message: 'You have successfully logged in'
+      }))
     })
   }))
 }
