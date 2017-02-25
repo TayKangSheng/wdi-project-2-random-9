@@ -148,9 +148,21 @@ const photoController = {
   },
 
   updateZine: function (req, res) {
-    // console.log(req.body.name)
-    req.body.name.forEach(function (zineName) {
-      Zine.findOneAndUpdate({name: zineName},
+    // console.log(typeof req.body.id)
+    if(typeof req.body.id === "object") {
+      req.body.id.forEach(function (zineId) {
+        Zine.findOneAndUpdate({_id: zineId},
+          { $push: { photo: req.params.id }}, function (err, output) {
+            if (err) {
+              console.error(err)
+              return
+            } else {
+              console.log('pushed id into zine')
+            }
+          })
+        })
+    } else {
+      Zine.findOneAndUpdate({_id: req.body.id},
         { $push: { photo: req.params.id }}, function (err, output) {
           if (err) {
             console.error(err)
@@ -159,7 +171,7 @@ const photoController = {
             console.log('pushed id into zine')
           }
         })
-    })
+    }
     res.redirect('/photos')
     // Zine.findOneAndUpdate({name: req.body.name},
     //   { $push: { photo: req.params.id }}, function (err, output) {

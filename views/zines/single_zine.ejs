@@ -5,14 +5,19 @@
     <button type="submit" class="btn btn-danger">Delete</button>
   </form>
   <!--<h1><%=singleZine%></h1>-->
-  <div class="row">
-  <div class="col-md-4">.col-md-4</div>
-    <div class="container">
-      <%for(var i = 0; i < 3; i++) {%>
-          hello
-          <%}%>
+
+<div class="row">
+    <div class="col-md-4">
+      <div class="row">
+        <% for (var i = 0 ; i < 3; i++) { %>
+          <div width="200px" height="100px" style="border: solid black 2px">
+            <p>print</p>
+          </div>
+        <% } %>
+      </div>
     </div>
 </div>
+
   <%singleZine.photo.forEach(function(photo) {%>
     <img src="<%=photo.url%>" alt="picture not available" width="400px" height="auto">
   <%})%>

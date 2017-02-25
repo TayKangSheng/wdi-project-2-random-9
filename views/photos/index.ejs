@@ -1,10 +1,33 @@
-<div class="container" style="margin:0 auto">
 
-<% photos.forEach(function(photo) { %>
-  <a href=<%= "/photos/" + photo._id %>><img src="<%= photo.url %>" width="300" height="auto" alt="image not available"></a>
-  <!--<br>
-  <<strong><%= photo.title %></strong>
-  <<br>
-  <%= photo.description %>-->
-  <%})%>
+
+<div class="col-md-12">
+<div id="myGrid" class="grid-padding">
+    <div class="col-md-4 col-sm-4 padding-right-zero">
+    <%for(var i = 0; i < photos.length; i++) {%>
+      <img src="<%= photos[i].url %>" class="img-responsive">
+      <%}%>
+    </div>
+</div>
+</div>
+
+<div class="col-md-12">
+<div id="myGrid" class="grid-padding">
+<%for(var i = 0; i < photos.length; i++) {%>
+  <%if(i % 3 === 1) {%>
+    <div class="col-md-4 col-sm-4 padding-right-zero">
+      <img src="<%= photos[i].url %>" class="img-responsive">
+    </div>
+  <%} else if(i % 3 === 2) {%>
+    <div class="col-md-4 col-sm-4 padding-right-zero">
+      <img src="<%= photos[i].url %>" class="img-responsive">
+    </div>
+
+  <%} else {%>
+    <div class="col-md-4 col-sm-4 padding-right-zero">
+      <img src="<%= photos[i].url %>" class="img-responsive">
+    </div>
+
+  <%}%>
+<%}%>
+</div>
 </div>

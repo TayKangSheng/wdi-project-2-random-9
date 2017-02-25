@@ -41,7 +41,7 @@ require('./config/passportConfig')(passport) // pass passport for configuration
 app.use(flash())
 
 // set static folder
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 
 app.use(methodOverride('_method'))
 app.use(logger('dev')) // log every request to the console

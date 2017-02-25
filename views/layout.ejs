@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title></title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>photozine</title>
+      <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
+      <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto:300,400|Questrial|Satisfy">
+      <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="/css/animate.css">
+      <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+      <!-- =======================================================
+          Theme Name: Laura
+          Theme URL: https://bootstrapmade.com/laura-free-creative-bootstrap-theme/
+          Author: BootstrapMade.com
+          Author URL: https://bootstrapmade.com
+      ======================================================= -->
   </head>
-  <body>
+  <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" onload="myFunction()">
     <% include ./partials/header %>
-    <div class="container">
+    <!--<div class="container">-->
       <%- body %>
-    </div>
+    <!--</div>-->
     <% include ./partials/footer %>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
   </body>
 </html>
