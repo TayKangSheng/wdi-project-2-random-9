@@ -6,16 +6,23 @@
   </form>
   <!--<h1><%=singleZine%></h1>-->
 
+  <form method="POST" action=<%= "/zines/" + singleZine._id + "/remove" + "?_method=PUT"%>>
   <div class="col-md-12">
     <div id="myGrid" class="grid-padding-singleZine">
       <%singleZine.photo.forEach(function(photo) {%>
         <div class="col-md-4 col-sm-4 padding-right-zero-singleZine">
-          <img src="<%=photo.url%>" width="300px" height="auto" />
-          <input type="checkbox" class="checkbox" id="check1" />
+          <a href=<%="/photos/" + photo._id%>><img src="<%=photo.url%>" width="300px" height="auto" /></a>
+          <input type="checkbox" class="checkbox" value=<%=photo._id%> name="id" />
         </div>
       <%})%>
 
     </div>
   </div>
-
+    <%if(singleZine.photo.length > 0) {%>
+      <button type="submit" class="btn btn-danger">Delete selected photo(s) from this zine</button>
+    <%} else {%>
+      <h3>This zine is currently empty,</h3><br />
+      <h3>Click <a href="/photos">here</a> to add some photos to your zine!</h3>
+    <%}%>
+  </form>
 </div>

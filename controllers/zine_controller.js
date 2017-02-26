@@ -27,7 +27,7 @@ const zineController = {
     Zine.findById(req.params.id)
       .populate('photo')
       .exec(function (err, singleZine) {
-        console.log(singleZine)
+        // console.log(singleZine)
         if (err) {
           console.error(err)
           return
@@ -108,6 +108,38 @@ const zineController = {
         res.redirect('/zines')
       }
     })
+  },
+
+  removePhotos: function (req, res) {
+    // console.log('req.body.id is ' + req.body.id)
+    // console.log('type of req.body.id is ' + typeof req.body.id)
+    if (typeof req.body.id === "object") {
+      // req.body.id.forEach(function (photoId) {
+        Zine.findOneAndUpdate({ _id: req.params.id },
+          { $pull: { photo: { $in: req.body.id } }}, function (err, output) {
+            // console.log(output);
+            if (err) {
+              console.error(err)
+              return
+            } else {
+              console.log('removing multiple photos')
+            }
+          })
+      // })
+    } else {
+      Zine.findOneAndUpdate({ _id: req.params.id },
+      { $pull: { photo: req.body.id }}, function (err, output) {
+        // console.log(output)
+        if (err) {
+          console.error(err)
+          return
+        } else {
+          console.log('removing one photo only')
+          // console.log(output);
+        }
+      })
+    }
+    res.redirect('/zines/' + req.params.id)
   }
 }
 

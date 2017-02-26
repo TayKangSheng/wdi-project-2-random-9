@@ -10,5 +10,6 @@ router.get('/:id/edit', authenticate.isNotLoggedIn, zineController.edit)
 router.post('/', zineController.create)
 router.put('/:id', zineController.update)
 router.delete('/:id', zineController.delete)
+router.put('/:id/remove', zineController.removePhotos)
 
 module.exports = router
