@@ -1,25 +1,21 @@
 <div class="container">
   <h1><%=singleZine.name%></h1>
-  <a class="btn btn-success" href=<%= "/zines/" + singleZine._id + "/edit"%>>Edit</a>
-  <form class="deleteForm" method="POST" action=<%= "/zines/" + singleZine._id + "?_method=DELETE" %>>
+  <form class="form-inline" method="POST" action=<%= "/zines/" + singleZine._id + "?_method=DELETE" %>>
+    <a class="btn btn-success" href=<%= "/zines/" + singleZine._id + "/edit"%>>Edit</a>
     <button type="submit" class="btn btn-danger">Delete</button>
   </form>
   <!--<h1><%=singleZine%></h1>-->
 
-<div class="row">
-    <div class="col-md-4">
-      <div class="row">
-        <% for (var i = 0 ; i < 3; i++) { %>
-          <div width="200px" height="100px" style="border: solid black 2px">
-            <p>print</p>
-          </div>
-        <% } %>
-      </div>
-    </div>
-</div>
+  <div class="col-md-12">
+    <div id="myGrid" class="grid-padding-singleZine">
+      <%singleZine.photo.forEach(function(photo) {%>
+        <div class="col-md-4 col-sm-4 padding-right-zero-singleZine">
+          <img src="<%=photo.url%>" width="300px" height="auto" />
+          <input type="checkbox" class="checkbox" id="check1" />
+        </div>
+      <%})%>
 
-  <%singleZine.photo.forEach(function(photo) {%>
-    <img src="<%=photo.url%>" alt="picture not available" width="300px" height="auto">
-  <%})%>
-  <br>
+    </div>
+  </div>
+
 </div>

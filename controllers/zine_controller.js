@@ -27,7 +27,7 @@ const zineController = {
     Zine.findById(req.params.id)
       .populate('photo')
       .exec(function (err, singleZine) {
-        // console.log(singleZine)
+        console.log(singleZine)
         if (err) {
           console.error(err)
           return
