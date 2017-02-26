@@ -116,12 +116,21 @@ Responsive media queries
 	line-height: 40px;
 	border-radius: 50%;
 }
+.deco-1{
+	font-family: 'Satisfy', cursive;
+	color: #fff;
+}
 .deco{
 	font-family: 'Satisfy', cursive;
-
 }
 #about{
 	background: url('../img/photozine.jpg') no-repeat;
+	background-size: cover;
+	margin-bottom: -3px;
+	min-height: 900px;
+}
+#about-1{
+	background: url('../img/polaroid.jpg') no-repeat;
 	background-size: cover;
 	margin-bottom: -3px;
 	min-height: 900px;
@@ -140,6 +149,9 @@ Responsive media queries
 }
 .about-text p{
 	color: #444;
+}
+.about-text-1 {
+	color: #fff;
 }
 .abt-list li{
 	padding: 5px 0px;

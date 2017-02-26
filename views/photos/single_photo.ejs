@@ -1,21 +1,25 @@
-<div class="container">
+<div class="container" style="text-align:center">
   <img src="<%= singlePhoto.url %>" width="1024" height="auto" alt="image not available">
   <br>
-  <strong><%= singlePhoto.title %></strong>
+  <br />
+  <h4><%= singlePhoto.title %></h4>
+  <h5><%= singlePhoto.description %></h5>
   <br>
-  <%= singlePhoto.description %>
   <br>
-  <br>
-  <% if(isCreator) {%>
-    <a class="btn btn-success" href=<%= "/photos/" + singlePhoto._id + "/edit"%>>Edit</a>
-    <form class="deleteForm" method="POST" action=<%= "/photos/" + singlePhoto._id + "?_method=DELETE" %>>
+  <div class="container" style="text-align:left">
+
+    <% if(isCreator) {%>
+      <form class="form-inline" method="POST" action=<%= "/photos/" + singlePhoto._id + "?_method=DELETE" %>>
+      <a class="btn btn-success" href=<%= "/photos/" + singlePhoto._id + "/edit"%>>Edit</a>
       <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
-  <% } %>
-  <% if(zine.length !== 0) { %>
-    <a class="btn btn-default" href=<%= "/photos/" + singlePhoto._id + "/add"%>>Add to existing zine(s)</a>
-  <% } %>
-    <a class="btn btn-default" href=<%= "/photos/" + singlePhoto._id + "/new"%>>Add to a new zine</a>
+      </form>
+      <% } %>
+      <br />
+      <% if(zine.length !== 0) { %>
+        <a class="btn btn-default" href=<%= "/photos/" + singlePhoto._id + "/add"%>>Add to existing zine(s)</a>
+        <% } %>
+        <a class="btn btn-default" href=<%= "/photos/" + singlePhoto._id + "/new"%>>Add to a new zine</a>
+  </div>
 
 
 </div>

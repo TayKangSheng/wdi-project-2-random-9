@@ -1,5 +1,6 @@
 <div class="container">
   <h1><%=singleZine.name%></h1>
+  <h5><%=singleZine.description%></h5>
   <form class="form-inline" method="POST" action=<%= "/zines/" + singleZine._id + "?_method=DELETE" %>>
     <a class="btn btn-success" href=<%= "/zines/" + singleZine._id + "/edit"%>>Edit</a>
     <button type="submit" class="btn btn-danger">Delete</button>
