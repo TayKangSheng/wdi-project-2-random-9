@@ -1,33 +1,53 @@
-
-
 <div class="col-md-12">
-<div id="myGrid" class="grid-padding">
-    <div class="col-md-4 col-sm-4 padding-right-zero">
-    <%for(var i = 0; i < photos.length; i++) {%>
-      <img src="<%= photos[i].url %>" class="img-responsive">
-      <%}%>
-    </div>
-</div>
-</div>
-
-<div class="col-md-12">
-<div id="myGrid" class="grid-padding">
-<%for(var i = 0; i < photos.length; i++) {%>
-  <%if(i % 3 === 1) {%>
-    <div class="col-md-4 col-sm-4 padding-right-zero">
-      <img src="<%= photos[i].url %>" class="img-responsive">
-    </div>
-  <%} else if(i % 3 === 2) {%>
-    <div class="col-md-4 col-sm-4 padding-right-zero">
-      <img src="<%= photos[i].url %>" class="img-responsive">
-    </div>
-
-  <%} else {%>
-    <div class="col-md-4 col-sm-4 padding-right-zero">
-      <img src="<%= photos[i].url %>" class="img-responsive">
-    </div>
-
-  <%}%>
-<%}%>
-</div>
+  <div id="myGrid" class="grid-padding">
+    <%if(photos.length % 3 === 1) {%>
+      <div class="col-md-4 col-sm-4 padding-right-zero">
+        <%for(var i = 0; i < Math.round(photos.length / 3 + 1); i++) {%>
+          <a href=<%="/photos/" + photos[i]._id%>><img src="<%= photos[i].url %>" class="img-responsive"></a>
+        <%}%>
+      </div>
+      <div class="col-md-4 col-sm-4 padding-right-zero">
+        <%for(var i = Math.round(photos.length / 3 + 1); i < Math.round(photos.length * 2/3); i++) {%>
+          <a href=<%="/photos/" + photos[i]._id%>><img src="<%= photos[i].url %>" class="img-responsive"></a>
+        <%}%>
+      </div>
+      <div class="col-md-4 col-sm-4 padding-right-zero">
+        <%for(var i = Math.round(photos.length * 2/3); i < photos.length; i++) {%>
+          <a href=<%="/photos/" + photos[i]._id%>><img src="<%= photos[i].url %>" class="img-responsive"></a>
+        <%}%>
+      </div>
+    <%} else if(photos.length % 3 === 2) {%>
+      <div class="col-md-4 col-sm-4 padding-right-zero">
+        <%for(var i = 0; i < Math.round(photos.length / 3); i++) {%>
+          <a href=<%="/photos/" + photos[i]._id%>><img src="<%= photos[i].url %>" class="img-responsive"></a>
+        <%}%>
+      </div>
+      <div class="col-md-4 col-sm-4 padding-right-zero">
+        <%for(var i = Math.round(photos.length / 3); i < Math.round(photos.length * 2/3 + 1); i++) {%>
+          <a href=<%="/photos/" + photos[i]._id%>><img src="<%= photos[i].url %>" class="img-responsive"></a>
+        <%}%>
+      </div>
+      <div class="col-md-4 col-sm-4 padding-right-zero">
+        <%for(var i = Math.round(photos.length * 2/3 + 1); i < photos.length; i++) {%>
+          <a href=<%="/photos/" + photos[i]._id%>><img src="<%= photos[i].url %>" class="img-responsive"></a>
+        <%}%>
+      </div>
+    <%} else {%>
+      <div class="col-md-4 col-sm-4 padding-right-zero">
+        <%for(var i = 0; i < (photos.length / 3); i++) {%>
+          <a href=<%="/photos/" + photos[i]._id%>><img src="<%= photos[i].url %>" class="img-responsive"></a>
+        <%}%>
+      </div>
+      <div class="col-md-4 col-sm-4 padding-right-zero">
+        <%for(var i = (photos.length / 3); i < (photos.length * 2/3); i++) {%>
+          <a href=<%="/photos/" + photos[i]._id%>><img src="<%= photos[i].url %>" class="img-responsive"></a>
+        <%}%>
+      </div>
+      <div class="col-md-4 col-sm-4 padding-right-zero">
+        <%for(var i = (photos.length * 2/3); i < photos.length; i++) {%>
+          <a href=<%="/photos/" + photos[i]._id%>><img src="<%= photos[i].url %>" class="img-responsive"></a>
+        <%}%>
+      </div>
+    <%}%>
+  </div>
 </div>
