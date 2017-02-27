@@ -1,5 +1,6 @@
 <div class="container">
 
+<% if(!isAuthenticated) {%>
   <h1>Sign up now!</h1>
 
   <% if(flash && flash.message) { %>
@@ -27,4 +28,7 @@
             </div>
             <button type="submit" class="btn btn-default" name="button">Submit</button>
           </form>
+      <% } else {%>
+        <h1>You are already logged in</h1>
+      <%}%>
 </div>
