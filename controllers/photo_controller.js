@@ -78,7 +78,7 @@ const photoController = {
   },
 
   update: function (req, res) {
-    // console.log('hello');
+    console.log(req.file);
     if (req.file) {
       cloudinary.uploader.upload(req.file.path, function (result) {
         Photo.findOneAndUpdate({

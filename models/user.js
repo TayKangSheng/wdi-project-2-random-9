@@ -3,26 +3,11 @@ const bcrypt = require('bcrypt')
 
 let UserSchema = new mongoose.Schema({
   local: {
-    email: String,
+    email: {
+      type: String,
+      unique: true
+    },
     password: String
-  },
-  facebook: {
-    id: String,
-    token: String,
-    email: String,
-    name: String
-  },
-  twitter: {
-    id: String,
-    token: String,
-    displayName: String,
-    username: String
-  },
-  google: {
-    id: String,
-    token: String,
-    email: String,
-    name: String
   }
 })
 

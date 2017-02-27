@@ -11,7 +11,13 @@
         <div class="row">
           <div class="col-md-12 wow fadeIn delay-05s animated" style="visibility: visible; animation-name: fadeIn;">
             <div class="banner-text">
-              <h2>Welcome to photozine</h2>
+              <%if(!isAuthenticated) {%>
+
+                <h2>Welcome to photozine</h2>
+              <%} else {%>
+                <h2>Welcome, <%=user.local.email%></h2>
+
+              <%}%>
               <!--<p>A platform for photographers to share their work <br>and for people to create their own unique zines</p>-->
             </div>
             <div class="overlay-detail text-center">
@@ -33,9 +39,9 @@
         </div>
         <div class="col-md-6 text-left">
           <div class="about-text-1">
-            <p>A platform for lens-based artists to publish and share their work. Make your images tangible and publish your work with minimal effort, money and time.</p>
+            <p>A platform for lens-based artists to publish and share their work. Make your images tangible and publish your work with minimal effort, money and time</p>
             <p>&nbsp;</p>
-            <p>Join the zine culture and share your work with a community of like-minded individuals who share the same passion for photography.</p>
+            <p>Join the zine culture and share your work with a community of like-minded individuals who share the same passion for photography</p>
             <p>&nbsp;</p>
             <!--<ul class="abt-list">
               <li>- Excepteur sint occaecat cupidatat non proident.</li>
