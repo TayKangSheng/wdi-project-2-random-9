@@ -66,7 +66,7 @@ app.use('/users', require('./routes/user_router'))
 app.use('/zines', require('./routes/zine_router'))
 
 
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 4000
 app.listen(port, function () {
   console.log('Magic is happening on port ' + port)
 })
