@@ -83,7 +83,9 @@ Responsive media queries
 
 .bg-color{
 	background-color: RGBA(0, 0, 0, 0.67);
-	min-height: 650px;
+	min-height: 47em;
+	margin-top: -20px;
+
 }
 .navbar-border{
 }
@@ -127,7 +129,7 @@ Responsive media queries
 	background: url('../img/photozine.jpg') no-repeat;
 	background-size: cover;
 	margin-bottom: -3px;
-	min-height: 900px;
+	min-height: 60em;
 }
 #about-1{
 	background: url('../img/polaroid2.jpg') no-repeat;
