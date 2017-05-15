@@ -1,5 +1,5 @@
 # Live Version
-[Access Heroku link here](https://pacific-coast-30390.herokuapp.com/)
+[Access Heroku link here](https://photozine.herokuapp.com/)
 
 # photozine, web app for photographers
 
